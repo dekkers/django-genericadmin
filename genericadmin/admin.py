@@ -67,3 +67,10 @@ class GenericTabularInline(BaseGenericModelAdmin, generic.GenericTabularInline):
 class GenericStackedInline(BaseGenericModelAdmin, generic.GenericStackedInline):
     """Model admin for generic stacked inlines. """
 
+
+class TabularInlineWithGeneric(BaseGenericModelAdmin, admin.TabularInline):
+    """"Normal tabular inline with a generic relation"""
+
+
+class StackedInlineWithGeneric(BaseGenericModelAdmin, admin.StackedInline):
+    """"Normal stacked inline with a generic relation"""
