@@ -14,6 +14,14 @@
         obj_url: "../obj/",
         admin_media_url: window.__admin_media_prefix__,
         generics_list_url: '../get-generic-rel-list/',
+        setUrls: function() {
+            var inline_model_name;
+            if (this.object_input.name.search('_set-') != -1) {
+                inline_model_name = this.object_input.name.split('_set-')[0];
+                this.obj_url = '../../'+inline_model_name+'/obj/';
+                this.generics_list_url = '../../'+inline_model_name+'/get-generic-rel-list/';
+            }
+        },
         loadUrlArray: function() {
             var that = this;
             $.ajax({
@@ -183,10 +191,14 @@
 
         installAdmin: function(elem) {
             var that = this;
-            // initialize the url array
-            that.loadUrlArray();
             // store the base element
             that.object_input = elem;
+
+            // Set the correct urls
+            that.setUrls();
+
+            // initialize the url array
+            that.loadUrlArray();
 
             // find the select we need to change
             that.object_select = that.prepareSelect(elem);
